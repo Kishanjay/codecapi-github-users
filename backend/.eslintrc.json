@@ -1,0 +1,29 @@
+  
+{
+    "extends": [
+      "airbnb-typescript/base",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    ],
+    "globals": {
+      "describe": "readonly",
+      "it": "readonly",
+      "expect": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "ecmaVersion": 2015
+    },
+    "rules": {
+      "@typescript-eslint/interface-name-prefix": [
+        "warn",
+        {
+          "prefixWithI": "always"
+        }
+      ],
+      "lines-between-class-members": 0,
+      "import/newline-after-import": 0
+    }
+  }
