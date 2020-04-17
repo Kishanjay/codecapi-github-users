@@ -1,4 +1,4 @@
-import Client, { SearchUserResponse } from './client/github.client';
+import Client, { SearchUserResponse } from './github.client';
 
 export default {
   searchUsers(_searchQuery: string): Promise<SearchUserResponse> {

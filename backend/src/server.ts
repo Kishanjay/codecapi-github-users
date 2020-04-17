@@ -5,7 +5,7 @@ import cors = require('cors');
 import logger from './logger';
 import githubRoutes from './routes/github.routes';
 
-const port = Number(process.env.PORT || 3001);
+const port = Number(process.env.PORT || 3000);
 
 const app = express();
 
