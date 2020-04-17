@@ -1,8 +1,9 @@
-import logger from './logger';
-import githubRoutes from './routes/github.routes';
-
+import 'module-alias/register';
 import express = require('express');
 import cors = require('cors');
+
+import logger from './logger';
+import githubRoutes from './routes/github.routes';
 
 const port = Number(process.env.PORT || 3001);
 

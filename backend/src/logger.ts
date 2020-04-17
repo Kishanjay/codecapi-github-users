@@ -10,16 +10,16 @@
  */
 
 import {
-    createLogger, config, format as _format, transports as _transports,
-  } from 'winston';
-  
-  const logger = createLogger({
-    levels: config.npm.levels,
-    format: _format.combine(
-      _format.colorize(),
-      _format.simple(),
-    ),
-    transports: [new _transports.Console({ level: 'silly' })],
-  });
-  
-  export default logger;
+  createLogger, config, format as _format, transports as _transports,
+} from 'winston';
+
+const logger = createLogger({
+  levels: config.npm.levels,
+  format: _format.combine(
+    _format.colorize(),
+    _format.simple(),
+  ),
+  transports: [new _transports.Console({ level: 'silly' })],
+});
+
+export default logger;
