@@ -5,6 +5,6 @@ const router = express.Router();
 
 
 router.get('/users', githubController.listUsers);
-router.get('/users/:id', githubController.getUser);
+router.get('/users/:username', githubController.getUser);
 
 export default router;

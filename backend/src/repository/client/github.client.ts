@@ -7,10 +7,14 @@ const client = axios.create({
     baseURL,
 });
 
-
 export interface SearchUserResponse {
     total_count: number,
     incomplete_results: boolean,
     items: GithubUser[]
 }
+
+export interface GetUserResponse { 
+
+}
+
 export default client;

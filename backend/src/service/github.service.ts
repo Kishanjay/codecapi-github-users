@@ -1,6 +1,7 @@
 import githubStorage from "@/storage/github.storage"
 import githubRepository from "@/repository/github.repository"
-import { GithubUser } from "@/types";
+import { GithubUser, GithubUserIdentifier } from "@/types";
+import logger from '@/logger';
 
 export default { 
     async listUsers (searchQuery: string): Promise<GithubUser[]> {
@@ -15,7 +16,18 @@ export default {
         githubStorage.setUsers(searchQuery, users);
         return users;
     },
-    getUser(_userId: string) {
-    
+    async getUser({username}: GithubUserIdentifier) {
+        const cachedUser = await githubStorage.getUser(username);
+        if (cachedUser) {
+            return cachedUser;
+        }
+
+        let user;
+        try {
+            user = await githubRepository.getUserByUsername(username)
+        } catch(e) {
+            logger.silly(e);
+        }
+        return user;
     }
 }

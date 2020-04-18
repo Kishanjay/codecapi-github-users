@@ -1,6 +1,6 @@
 import { GithubUser } from '@/types';
 
-import storageClient from './redis.client';
+import storageClient from './client/redis.client';
 
 export default {
     setUsers(searchQuery: string, users: GithubUser[]){

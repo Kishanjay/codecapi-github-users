@@ -1,4 +1,4 @@
-import Client, { SearchUserResponse } from './github.client';
+import Client, { SearchUserResponse } from './client/github.client';
 
 export default {
   searchUsers(_searchQuery: string): Promise<SearchUserResponse> {
@@ -9,5 +9,12 @@ export default {
         method: 'GET',
         params,
     }).then(({data}: {data: SearchUserResponse}) => data);
+  },
+  
+  getUserByUsername(username: string): Promise<any> {
+    return Client.request({
+      url: `users/${username}`,
+      method: 'GET',
+  }).then(({data}: {data: any}) => data);
   }
 }

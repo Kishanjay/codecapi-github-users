@@ -20,3 +20,6 @@ export interface GithubUser {
     score: number; 
 }
 
+export interface GithubUserIdentifier {
+    username: string;
+}
