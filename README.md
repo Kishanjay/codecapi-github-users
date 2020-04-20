@@ -1,10 +1,14 @@
 # About
 Note this application was written in such a way that the frontend and backend can be treated as seperate components.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8f116bb5-a928-4b7c-a650-258b53041a07/deploy-status)](https://app.netlify.com/sites/friendly-ride-b3ab2e/deploys)
+How to run 
+1. `yarn install`
+1. `npm run start`
 
-Backend URL: https://github-users-backend.herokuapp.com/
 
+How to dev
+1. `cd backend && yarn dev`
+1. `cd frontend && yarn serve`
 
 # Assignment
 Maak een simpele app die een lijst met gebruikers ophaalt van Github. Aan de hand van een zoekveld moet kunnen worden gezocht naar gebruikers. In de resultaten van die zoekopdracht moeten de getoonde gebruikers aan te klikken zijn waarna genavigeerd wordt naar een pagina waar de gebruiker details te zien zijn. We zien graag een aparte route in je app voor het zoeken naar gebruikers en het tonen van de details van een gebruiker.

@@ -4,7 +4,7 @@
   "description": "Github users assignment of CodeCapi",
   "scripts": {
     "start-backend": "yarn --cwd ./backend install && yarn --cwd ./backend run build && yarn --cwd ./backend run start",
-    "start-frontend": "yarn --cwd ./backend install && yarn --cwd ./frontend run build && yarn serve -s ./frontend/dist -l 8080",
+    "start-frontend": "yarn --cwd ./frontend install && yarn --cwd ./frontend run build && yarn serve -s ./frontend/dist -l 8080",
     "start": "concurrently 'yarn start-backend' 'yarn start-frontend' 'open http://localhost:8080'"
   },
   "author": "Kishan Nirghin",
