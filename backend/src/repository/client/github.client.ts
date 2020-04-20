@@ -1,20 +1,15 @@
-import { GithubUser } from "@/types";
+import { GithubUser } from '@/types';
+import axios from 'axios';
 
-const axios = require('axios');
-
-const baseURL = 'https://api.github.com/'
+const baseURL = 'https://api.github.com/';
 const client = axios.create({
-    baseURL,
+  baseURL,
 });
 
 export interface SearchUserResponse {
-    total_count: number,
-    incomplete_results: boolean,
-    items: GithubUser[]
-}
-
-export interface GetUserResponse { 
-
+  total_count: number;
+  incomplete_results: boolean;
+  items: GithubUser[];
 }
 
 export default client;

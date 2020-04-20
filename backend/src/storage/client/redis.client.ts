@@ -1,10 +1,11 @@
-const redis = require('redis');
-const {promisify} = require('util');
-const client = redis.createClient(process.env.REDIS_URL);
+import * as redis from 'redis';
+import { promisify } from 'util';
+const client = redis.createClient(process.env.REDIS_URL as string);
 
 export default {
   ...client,
-  getAsync: promisify(client.get).bind(client),
-  setAsync: promisify(client.set).bind(client),
-  keysAsync: promisify(client.keys).bind(client)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getAsync: promisify(client.get).bind(client) as Function,
+  setAsync: promisify(client.set).bind(client) as Function,
+  keysAsync: promisify(client.keys).bind(client),
 };

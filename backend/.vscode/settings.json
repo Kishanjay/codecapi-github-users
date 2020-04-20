@@ -11,4 +11,7 @@
       }
     ],
     "eslint.autoFixOnSave": true,
+    "eslint.workingDirectories": [
+      { "directory": "./", "changeProcessCWD": true },
+    ]
   }
