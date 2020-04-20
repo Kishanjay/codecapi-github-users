@@ -12,7 +12,7 @@ const routes: Array<RouteConfig> = [
     component: UserSearchPage,
   },
   {
-    path: '/user/:id',
+    path: '/user/:username',
     name: 'detail',
     component: UserDetailPage,
   },

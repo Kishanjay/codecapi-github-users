@@ -7,6 +7,9 @@ import 'bulma/css/bulma.css';
 
 Vue.config.productionTip = false;
 
+
+Vue.filter('humanDateFormat', (dateString: string) => new Date(dateString).toLocaleDateString());
+
 new Vue({
   router,
   render: (h) => h(App),
