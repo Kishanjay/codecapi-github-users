@@ -53,4 +53,19 @@ export default {
     }
     return user;
   },
+  async getUserFollowers({ username }: GithubUserIdentifier): Promise<GithubUser[]> {
+    const cachedUser = await githubStorage.getUserFollowers(username);
+    if (cachedUser) {
+      return cachedUser;
+    }
+
+    let followers;
+    try {
+      followers = await githubRepository.getUserFollowersByUsername(username);
+    } catch (e) {
+      logger.silly(e);
+      return [];
+    }
+    return followers;
+  },
 };

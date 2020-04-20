@@ -29,4 +29,15 @@ export default {
     }
     res.send(user);
   },
+
+  async getUserFollowers(req: express.Request, res: express.Response): Promise<void> {
+    const { username } = req.params;
+    const user = await githubService.getUserFollowers({ username });
+
+    if (!user) {
+      res.status(404).send();
+      return;
+    }
+    res.send(user);
+  },
 };

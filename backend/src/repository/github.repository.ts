@@ -25,4 +25,11 @@ export default {
       method: 'GET',
     }).then(({ data }: {data: GithubRepository[]}) => data);
   },
+
+  getUserFollowersByUsername(username: string): Promise<GithubUser[]> {
+    return Client.request({
+      url: `users/${username}/followers`,
+      method: 'GET',
+    }).then(({ data }: {data: GithubUser[]}) => data);
+  },
 };

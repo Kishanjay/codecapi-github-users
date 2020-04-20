@@ -23,4 +23,11 @@ export default {
     const userRepositoriesString = await storageClient.getAsync(`userRepositories-${userId}`);
     return JSON.parse(userRepositoriesString);
   },
+  setUserFollowers(userId: string, userRepositories: GithubUser[]): Promise<void> {
+    return storageClient.setAsync(`userFollowers-${userId}`, JSON.stringify(userRepositories));
+  },
+  async getUserFollowers(userId: string): Promise<GithubUser[]> {
+    const userRepositoriesString = await storageClient.getAsync(`userFollowers-${userId}`);
+    return JSON.parse(userRepositoriesString);
+  },
 };
