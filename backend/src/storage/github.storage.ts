@@ -1,5 +1,5 @@
 import { GithubUser, GithubRepository } from '@/types';
-import storageClient from './client/redis.client';
+import storageClient from './client/memory.client';
 
 export default {
   setUsers(searchQuery: string, users: GithubUser[]): Promise<void> {
