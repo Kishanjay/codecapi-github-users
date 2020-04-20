@@ -28,10 +28,10 @@ export default {
     if (cachedUser) {
       return cachedUser;
     }
-
     let user;
     try {
       user = await githubRepository.getUserByUsername(username);
+      githubStorage.setUser(username, user);
     } catch (e) {
       logger.silly(e);
       return null;
@@ -39,33 +39,53 @@ export default {
     return user;
   },
   async getUserRepositories({ username }: GithubUserIdentifier): Promise<GithubRepository[]> {
-    const cachedUser = await githubStorage.getUserRepositories(username);
-    if (cachedUser) {
-      return cachedUser;
+    const cachedUserRepositories = await githubStorage.getUserRepositories(username);
+    if (cachedUserRepositories) {
+      return cachedUserRepositories;
     }
 
     let user;
     try {
-      user = await githubRepository.getUserRepositoriesByUsername(username);
+      user = await this.getUser({ username });
     } catch (e) {
-      logger.silly(e);
-      return [];
+      logger.warn(e);
     }
-    return user;
-  },
-  async getUserFollowers({ username }: GithubUserIdentifier): Promise<GithubUser[]> {
-    const cachedUser = await githubStorage.getUserFollowers(username);
-    if (cachedUser) {
-      return cachedUser;
+    if (!user || !('repos_url' in user)) {
+      return [];
     }
 
-    let followers;
+    let userRepositories;
     try {
-      followers = await githubRepository.getUserFollowersByUsername(username);
+      userRepositories = await githubRepository.getUserRepositoriesByUrl(user.repos_url);
     } catch (e) {
       logger.silly(e);
       return [];
     }
-    return followers;
+    return userRepositories;
+  },
+  async getUserFollowers({ username }: GithubUserIdentifier): Promise<GithubUser[]> {
+    const cachedUserFollowers = await githubStorage.getUserFollowers(username);
+    if (cachedUserFollowers) {
+      return cachedUserFollowers;
+    }
+
+    let user;
+    try {
+      user = await this.getUser({ username });
+    } catch (e) {
+      logger.warn(e);
+    }
+    if (!user || !('followers_url' in user)) {
+      return [];
+    }
+
+    let userFollowers;
+    try {
+      userFollowers = await githubRepository.getUserFollowersByUrl(user.followers_url);
+    } catch (e) {
+      logger.silly(e);
+      return [];
+    }
+    return userFollowers;
   },
 };

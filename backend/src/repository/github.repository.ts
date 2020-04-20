@@ -1,4 +1,5 @@
 import { GithubUser, GithubRepository } from '@/types';
+import axios from 'axios';
 import Client, { SearchUserResponse } from './client/github.client';
 
 export default {
@@ -19,16 +20,16 @@ export default {
     }).then(({ data }: {data: GithubUser}) => data);
   },
 
-  getUserRepositoriesByUsername(username: string): Promise<GithubRepository[]> {
-    return Client.request({
-      url: `users/${username}/repos`,
+  getUserRepositoriesByUrl(url: string): Promise<GithubRepository[]> {
+    return axios.request({
+      url,
       method: 'GET',
     }).then(({ data }: {data: GithubRepository[]}) => data);
   },
 
-  getUserFollowersByUsername(username: string): Promise<GithubUser[]> {
-    return Client.request({
-      url: `users/${username}/followers`,
+  getUserFollowersByUrl(url: string): Promise<GithubUser[]> {
+    return axios.request({
+      url,
       method: 'GET',
     }).then(({ data }: {data: GithubUser[]}) => data);
   },
