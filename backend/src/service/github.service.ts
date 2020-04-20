@@ -6,7 +6,7 @@ import logger from '@/logger';
 export default {
   async listUsersByUsername(username: string): Promise<GithubUser[]> {
     const cachedUsers = await githubStorage.getUsers(username);
-    if (cachedUsers) {
+    if (cachedUsers && cachedUsers.length) {
       return cachedUsers;
     }
 
@@ -40,7 +40,7 @@ export default {
   },
   async getUserRepositories({ username }: GithubUserIdentifier): Promise<GithubRepository[]> {
     const cachedUserRepositories = await githubStorage.getUserRepositories(username);
-    if (cachedUserRepositories) {
+    if (cachedUserRepositories && cachedUserRepositories.length) {
       return cachedUserRepositories;
     }
 
@@ -65,7 +65,7 @@ export default {
   },
   async getUserFollowers({ username }: GithubUserIdentifier): Promise<GithubUser[]> {
     const cachedUserFollowers = await githubStorage.getUserFollowers(username);
-    if (cachedUserFollowers) {
+    if (cachedUserFollowers && cachedUserFollowers.length) {
       return cachedUserFollowers;
     }
 
