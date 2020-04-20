@@ -23,3 +23,14 @@ export interface GithubUser {
 export interface GithubUserIdentifier {
   username: string;
 }
+
+export interface GithubRepository {
+  id: number;
+  name: string;
+  owner: object;
+  html_url: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  language: string;
+}

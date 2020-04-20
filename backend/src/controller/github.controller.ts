@@ -3,9 +3,9 @@ import express = require('express');
 
 export default {
   async listUsers(req: express.Request, res: express.Response): Promise<void> {
-    const searchQuery = req.query.search as string;
-    const users = await githubService.listUsers(searchQuery);
-    res.send({ users });
+    const searchQuery = req.query.username as string;
+    const users = await githubService.listUsersByUsername(searchQuery);
+    res.send(users);
   },
 
   async getUser(req: express.Request, res: express.Response): Promise<void> {
@@ -13,9 +13,20 @@ export default {
     const user = await githubService.getUser({ username });
 
     if (!user) {
-      res.sendStatus(404);
+      res.status(404).send();
       return;
     }
-    res.send({ user });
+    res.send(user);
+  },
+
+  async getUserRepositories(req: express.Request, res: express.Response): Promise<void> {
+    const { username } = req.params;
+    const user = await githubService.getUserRepositories({ username });
+
+    if (!user) {
+      res.status(404).send();
+      return;
+    }
+    res.send(user);
   },
 };

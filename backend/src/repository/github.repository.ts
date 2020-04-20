@@ -1,9 +1,9 @@
-import { GithubUser } from '@/types';
+import { GithubUser, GithubRepository } from '@/types';
 import Client, { SearchUserResponse } from './client/github.client';
 
 export default {
-  searchUsers(searchQuery: string): Promise<SearchUserResponse> {
-    const params = { q: searchQuery };
+  searchUsersByUsername(username: string): Promise<SearchUserResponse> {
+    const params = { q: username };
 
     return Client.request({
       url: 'search/users',
@@ -17,5 +17,12 @@ export default {
       url: `users/${username}`,
       method: 'GET',
     }).then(({ data }: {data: GithubUser}) => data);
+  },
+
+  getUserRepositoriesByUsername(username: string): Promise<GithubRepository[]> {
+    return Client.request({
+      url: `users/${username}/repos`,
+      method: 'GET',
+    }).then(({ data }: {data: GithubRepository[]}) => data);
   },
 };

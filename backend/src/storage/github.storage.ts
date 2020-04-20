@@ -1,4 +1,4 @@
-import { GithubUser } from '@/types';
+import { GithubUser, GithubRepository } from '@/types';
 import storageClient from './client/redis.client';
 
 export default {
@@ -15,5 +15,12 @@ export default {
   async getUser(userId: string): Promise<GithubUser | null> {
     const userString = await storageClient.getAsync(`user-${userId}`);
     return JSON.parse(userString);
+  },
+  setUserRepositories(userId: string, userRepositories: GithubRepository[]): Promise<void> {
+    return storageClient.setAsync(`userRepositories-${userId}`, JSON.stringify(userRepositories));
+  },
+  async getUserRepositories(userId: string): Promise<GithubRepository[]> {
+    const userRepositoriesString = await storageClient.getAsync(`userRepositories-${userId}`);
+    return JSON.parse(userRepositoriesString);
   },
 };
