@@ -1,5 +1,5 @@
 {
-  "name": "codecapi-github-users",
+  "name": "codecapi-github-users-backend",
   "version": "1.0.0",
   "description": "Github users assignment of CodeCapi",
   "scripts": {

@@ -2,7 +2,7 @@
 Maak een simpele app die een lijst met gebruikers ophaalt van Github. Aan de hand van een zoekveld moet kunnen worden gezocht naar gebruikers. In de resultaten van die zoekopdracht moeten de getoonde gebruikers aan te klikken zijn waarna genavigeerd wordt naar een pagina waar de gebruiker details te zien zijn. We zien graag een aparte route in je app voor het zoeken naar gebruikers en het tonen van de details van een gebruiker.
 
 ## Vereisten
-- Gebruik de G​ ithub API​ om user data op te halen van Github
+- Gebruik de G​ithub API​ om user data op te halen van Github
 - Maak een NodeJS API (REST of GraphQL) waarin de connectie met de
 Github API wordt gemaakt en die fungeert als een caching layer. De client
 moet deze API gebruiken.

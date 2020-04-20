@@ -1,0 +1,16 @@
+{
+  "name": "codecapi-github-users",
+  "version": "1.0.0",
+  "description": "Github users assignment of CodeCapi",
+  "scripts": {
+    "start-backend": "yarn --cwd ./backend run build && yarn --cwd ./backend run start",
+    "start-frontend": "yarn --cwd ./frontend run build && yarn serve -s ./frontend/dist -l 8080",
+    "start": "concurrently 'yarn start-backend' 'yarn start-frontend' 'open http://localhost:8080'"
+  },
+  "author": "Kishan Nirghin",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "serve": "^11.3.0"
+  }
+}
