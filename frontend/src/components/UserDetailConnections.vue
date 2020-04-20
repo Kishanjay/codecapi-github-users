@@ -38,7 +38,7 @@
         v-for="follower in followers"
         :key="follower.id"
         class="panel-block"
-        :to="{ name: 'user', params: { username: follower.login }}"
+        :to="{ name: 'detail', params: { username: follower.login }}"
       >
         <span class="is-size-5">{{ follower.login }}</span>
       </router-link>
@@ -75,6 +75,7 @@ export default Vue.extend({
   },
   methods: {
     async loadRepositories() {
+      this.repositories = [];
       try {
         this.repositories = await UserRepository.getRepositoriesByUsername(this.username);
       } catch (e) {
@@ -82,6 +83,7 @@ export default Vue.extend({
       }
     },
     async loadFollowers() {
+      this.followers = [];
       try {
         this.followers = await UserRepository.getFollowersByUsername(this.username);
       } catch (e) {

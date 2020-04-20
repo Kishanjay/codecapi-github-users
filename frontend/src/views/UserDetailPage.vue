@@ -47,11 +47,17 @@ export default Vue.extend({
       error: '',
     };
   },
+  watch: {
+    $route() {
+      this.loadUser(this.$route.params.username);
+    },
+  },
   created() {
     this.loadUser(this.$route.params.username);
   },
   methods: {
     async loadUser(username: string) {
+      this.user = null;
       this.loading = true;
       try {
         const user = await UserRepository.getUserByUsername(username);
