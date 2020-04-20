@@ -1,4 +1,4 @@
-import { GithubUser } from '@/types';
+import { GithubUser, GithubRepository } from '@/types';
 import Client from './clients/BackendClient';
 
 
@@ -18,18 +18,17 @@ export default {
     }).then(({ data }: { data: GithubUser | null }) => data);
   },
 
-  getRepositoriesByUsername(username: string) {
+  getRepositoriesByUsername(username: string): Promise<GithubRepository[]> {
     return Client.request({
       method: 'GET',
       url: `github/users/${username}/repositories`,
-    }).then(({ data }: { data: any }) => data);
+    }).then(({ data }: { data: GithubRepository[] }) => data);
   },
 
-
-  getFollowersByUsername(username: string) {
+  getFollowersByUsername(username: string): Promise<GithubUser[]> {
     return Client.request({
       method: 'GET',
       url: `github/users/${username}/followers`,
-    }).then(({ data }: { data: any }) => data);
+    }).then(({ data }: { data: GithubUser[] }) => data);
   },
 };

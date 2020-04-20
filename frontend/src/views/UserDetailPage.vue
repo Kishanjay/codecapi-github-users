@@ -2,7 +2,7 @@
   <app-layout>
     <div
       class="container"
-      style="margin-top: 16px;"
+      style="margin: 16px; 0px"
     >
       <app-loader v-if="loading" />
 
@@ -15,7 +15,7 @@
         </div>
 
         <div class="column">
-          <user-detail-connections :user="user" />
+          <user-detail-connections :username="user.login" />
         </div>
       </div>
     </div>

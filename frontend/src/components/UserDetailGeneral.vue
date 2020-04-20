@@ -66,13 +66,13 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { User } from '@/types';
+import { GithubUser } from '@/types';
 
 export default Vue.extend({
   props: {
     user: {
       required: true,
-      type: Object as PropType<User>,
+      type: Object as PropType<GithubUser>,
     },
   },
 });

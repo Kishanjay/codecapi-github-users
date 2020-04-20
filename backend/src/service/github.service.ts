@@ -23,6 +23,7 @@ export default {
     githubStorage.setUsers(username, users);
     return users;
   },
+
   async getUser({ username }: GithubUserIdentifier): Promise<GithubUser | null> {
     const cachedUser = await githubStorage.getUser(username);
     if (cachedUser) {
@@ -33,11 +34,12 @@ export default {
       user = await githubRepository.getUserByUsername(username);
       githubStorage.setUser(username, user);
     } catch (e) {
-      logger.silly(e);
+      logger.warn(e);
       return null;
     }
     return user;
   },
+
   async getUserRepositories({ username }: GithubUserIdentifier): Promise<GithubRepository[]> {
     const cachedUserRepositories = await githubStorage.getUserRepositories(username);
     if (cachedUserRepositories && cachedUserRepositories.length) {
@@ -58,11 +60,12 @@ export default {
     try {
       userRepositories = await githubRepository.getUserRepositoriesByUrl(user.repos_url);
     } catch (e) {
-      logger.silly(e);
+      logger.warn(e);
       return [];
     }
     return userRepositories;
   },
+
   async getUserFollowers({ username }: GithubUserIdentifier): Promise<GithubUser[]> {
     const cachedUserFollowers = await githubStorage.getUserFollowers(username);
     if (cachedUserFollowers && cachedUserFollowers.length) {
@@ -83,7 +86,7 @@ export default {
     try {
       userFollowers = await githubRepository.getUserFollowersByUrl(user.followers_url);
     } catch (e) {
-      logger.silly(e);
+      logger.warn(e);
       return [];
     }
     return userFollowers;
